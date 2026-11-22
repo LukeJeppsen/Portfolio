@@ -4,6 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Luke Jeppsen | Software Developer</title>
+<meta name="description" content="Luke Jeppsen: Computer Science student at Weber State (B.S. December 2026) and software developer intern at SKM Engineering. Projects, experience, and résumé.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Luke Jeppsen | Software Developer">
+<meta property="og:description" content="Software developer who automates manual workflows. Projects, experience, and résumé.">
+<meta property="og:url" content="https://lukejeppsen.github.io/Portfolio/">
+<meta property="og:image" content="https://lukejeppsen.github.io/Portfolio/assets/preview.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <style>
 :root{--bg:#0b1220;--panel:#111a2e;--text:#cdd6e6;--bright:#eef2f9;--muted:#7d8aa3;--accent:#5eead4;--line:#33456a}
@@ -31,6 +40,8 @@ section{counter-increment:sec;margin-bottom:96px;padding-top:8px;scroll-margin-t
 .label::before{content:"0" counter(sec) ".";font-family:ui-monospace,Consolas,monospace;font-size:1rem;font-weight:400;color:var(--accent)}
 .label::after{content:"";flex:1;max-width:260px;height:1px;background:linear-gradient(90deg,var(--line) 0%,#2b3a57 60%,transparent)}
 section > p{margin:0 0 16px}
+#aboutText a{color:var(--accent);border-bottom:1px solid rgba(94,234,212,.4)}
+#aboutText a:hover{border-bottom-color:var(--accent)}
 .item{display:grid;grid-template-columns:130px 1fr;gap:20px;padding:20px;margin:0 -20px 8px;border-radius:8px;transition:background .2s}
 .item:hover{background:rgba(30,42,66,.5);box-shadow:inset 0 1px 0 rgba(148,163,184,.08)}
 .when{font-size:.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding-top:4px}
@@ -66,7 +77,7 @@ section > p{margin:0 0 16px}
     <section id="experience"><div class="label">Experience</div><div id="jobs"></div><a class="resume-link" id="resume" download>View full résumé ↗</a></section>
     <section id="projects"><div class="label">Projects</div><div id="projList"></div></section>
     <section id="education"><div class="label">Education</div><div id="edu"></div></section>
-    <section id="skills"><div class="label">Skills &amp; Awards</div><div class="skills" id="skillList"></div></section>
+    <section id="skills"><div class="label">Skills</div><div class="skills" id="skillList"></div></section>
     <p class="foot">Built by hand with HTML, CSS, and JavaScript. Hosted on GitHub Pages. © <span id="yr"></span> Luke Jeppsen.</p>
   </main>
 </div>
@@ -76,12 +87,12 @@ const R="";
 fill("#name",SITE.name);fill("#headline",SITE.headline);fill("#status",SITE.status);
 fill("#social",`<a href="${SITE.github}" target="_blank" rel="noopener">GitHub</a><a href="${SITE.handshake}" target="_blank" rel="noopener">Handshake</a><a href="mailto:${SITE.email}">${SITE.email}</a><a href="${R+SITE.resume}" download>Résumé</a>`);
 $("#resume").href=R+SITE.resume;
-fill("#aboutText",SITE.about.map(p=>`<p>${esc(p)}</p>`).join(""));
+fill("#aboutText",SITE.about.map(p=>`<p>${p}</p>`).join(""));
 fill("#jobs",SITE.experience.map(j=>`<div class="item"><div class="when">${j.dates}</div><div><h3>${j.role} · ${j.org}</h3><ul>${j.bullets.map(b=>`<li>${esc(b)}</li>`).join("")}</ul><ul class="pills">${j.tech.map(t=>`<li>${t}</li>`).join("")}</ul></div></div>`).join(""));
 fill("#projList",SITE.projects.map(p=>`<div class="item"><div class="when">${p.type}</div><div><h3>${esc(p.name)}</h3><p>${esc(p.summary)}</p><p class="sub">${esc(p.role)}</p><ul class="pills">${p.tech.map(t=>`<li>${esc(t)}</li>`).join("")}</ul>${(p.links.length||p.note)?`<div class="plinks">${p.links.map(l=>`<a href="${l.url}" target="_blank" rel="noopener">${l.label} ↗</a>`).join("")}${p.note?`<span class="pnote">${esc(p.note)}</span>`:""}</div>`:""}</div></div>`).join(""));
 const e=SITE.education;
 fill("#edu",`<div class="item"><div class="when">${e.dates}</div><div><h3>${e.school}</h3><div class="sub">${e.degree} · GPA ${e.gpa}</div><ul>${e.credentials.map(c=>`<li>${c}</li>`).join("")}</ul><ul class="pills">${e.coursework.map(c=>`<li>${c}</li>`).join("")}</ul></div></div>`);
-fill("#skillList",SITE.skills.map(s=>`<div><h3>${s.group}</h3><div>${s.items.join(" · ")}</div></div>`).join("")+`<div><h3>Awards</h3><div>${SITE.awards.map(a=>`${esc(a.title)} <span style="color:var(--muted)">(${esc(a.detail)})</span>`).join("<br>")}</div></div>`);
+fill("#skillList",SITE.skills.map(s=>`<div><h3>${s.group}</h3><div>${s.items.join(" · ")}</div></div>`).join("")+(SITE.awards.length?`<div><h3>Awards</h3><div>${SITE.awards.map(a=>`${esc(a.title)} <span style="color:var(--muted)">(${esc(a.detail)})</span>`).join("<br>")}</div></div>`:""));
 fill("#yr",new Date().getFullYear());
 // highlight current section in sidebar
 const links=[...document.querySelectorAll(".toc a")];
