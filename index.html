@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luke Jeppsen | Software Developer</title>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<style>
+:root{--bg:#0b1220;--panel:#111a2e;--text:#cdd6e6;--bright:#eef2f9;--muted:#7d8aa3;--accent:#5eead4;--line:#33456a}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.7 "Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+body::before{content:"";position:fixed;inset:0;background:radial-gradient(600px circle at 15% 20%,rgba(94,234,212,.07),transparent 60%);pointer-events:none}
+a{color:var(--bright);text-decoration:none}a:hover{color:var(--accent)}
+.layout{max-width:1180px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 1.25fr;gap:64px}
+aside{position:sticky;top:0;height:100vh;padding:88px 0 56px;display:flex;flex-direction:column}
+aside h1{color:var(--bright);font-size:3rem;line-height:1.1;margin:0;letter-spacing:-.02em}
+.role{color:var(--bright);font-size:1.2rem;font-weight:500;margin:12px 0 8px}
+.head{color:var(--muted);max-width:320px;margin:0}
+.status{margin-top:18px;font-size:.8rem;color:var(--accent);display:flex;align-items:center;gap:8px}
+.status::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent)}
+.toc{list-style:none;padding:0;margin:56px 0 0}
+.toc a{display:flex;align-items:center;gap:16px;padding:8px 0;color:var(--muted);font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+.toc a::before{content:"";width:32px;height:1px;background:var(--muted);transition:all .2s}
+.toc a:hover,.toc a.on{color:var(--bright)}.toc a:hover::before,.toc a.on::before{width:64px;background:var(--bright)}
+.social{margin-top:auto;display:flex;gap:20px;font-size:.9rem;flex-wrap:wrap}
+.social a{color:var(--muted)}.social a:hover{color:var(--accent)}
+main{padding:88px 0}
+main{counter-reset:sec}
+section{counter-increment:sec;margin-bottom:96px;padding-top:8px;scroll-margin-top:56px}
+.label{display:flex;align-items:center;gap:14px;color:var(--bright);font-size:1.35rem;font-weight:700;letter-spacing:-.01em;margin-bottom:32px;white-space:nowrap}
+.label::before{content:"0" counter(sec) ".";font-family:ui-monospace,Consolas,monospace;font-size:1rem;font-weight:400;color:var(--accent)}
+.label::after{content:"";flex:1;max-width:260px;height:1px;background:linear-gradient(90deg,var(--line) 0%,#2b3a57 60%,transparent)}
+section > p{margin:0 0 16px}
+.item{display:grid;grid-template-columns:130px 1fr;gap:20px;padding:20px;margin:0 -20px 8px;border-radius:8px;transition:background .2s}
+.item:hover{background:rgba(30,42,66,.5);box-shadow:inset 0 1px 0 rgba(148,163,184,.08)}
+.when{font-size:.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding-top:4px}
+.item h3{margin:0;color:var(--bright);font-size:1.02rem;font-weight:600;line-height:1.4}
+.item .sub{color:var(--muted);font-size:.9rem}
+.item ul{padding-left:18px;margin:8px 0 0;font-size:.93rem}.item li{margin-bottom:4px}
+.item p{margin:8px 0 0;font-size:.93rem}
+.pills{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:12px 0 0}
+.pills li{font-size:.72rem;font-weight:600;color:var(--accent);background:rgba(94,234,212,.1);padding:4px 12px;border-radius:999px}
+.plinks{margin-top:10px;font-size:.88rem;font-weight:600;display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px}
+.pnote{font-family:ui-monospace,Consolas,monospace;font-size:.78rem;font-weight:400;color:var(--muted);border:1px dashed #33456a;border-radius:6px;padding:2px 10px}.plinks a{color:var(--accent)}
+.resume-link{display:inline-block;margin-top:8px;color:var(--bright);font-weight:600;border-bottom:1px solid var(--accent)}
+.skills{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.skills h3{color:var(--bright);font-size:.95rem;margin:0 0 4px}
+.foot{color:var(--muted);font-size:.85rem;max-width:440px;border-top:1px solid #1e2a42;padding-top:24px}
+@media (max-width:960px){.layout{grid-template-columns:1fr;padding:0 24px;gap:0}aside{position:static;height:auto;padding:64px 0 32px}.toc{display:none}.social{margin-top:28px}.label{position:sticky;top:0;z-index:5;background:rgba(11,18,32,.92);backdrop-filter:blur(6px);padding:16px 0;margin:0 0 12px;font-size:1.1rem}main{padding-top:0}.item{grid-template-columns:1fr;gap:4px}.skills{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="layout">
+  <aside>
+    <h1 id="name"></h1>
+    <p class="role">Software Developer</p>
+    <p class="head" id="headline"></p>
+    <div class="status" id="status"></div>
+    <ul class="toc">
+      <li><a href="#about">About</a></li><li><a href="#experience">Experience</a></li><li><a href="#projects">Projects</a></li><li><a href="#education">Education</a></li><li><a href="#skills">Skills</a></li>
+    </ul>
+    <div class="social" id="social"></div>
+  </aside>
+  <main>
+    <section id="about"><div class="label">About</div><div id="aboutText"></div></section>
+    <section id="experience"><div class="label">Experience</div><div id="jobs"></div><a class="resume-link" id="resume" download>View full résumé ↗</a></section>
+    <section id="projects"><div class="label">Projects</div><div id="projList"></div></section>
+    <section id="education"><div class="label">Education</div><div id="edu"></div></section>
+    <section id="skills"><div class="label">Skills &amp; Awards</div><div class="skills" id="skillList"></div></section>
+    <p class="foot">Built by hand with HTML, CSS, and JavaScript. Hosted on GitHub Pages. © <span id="yr"></span> Luke Jeppsen.</p>
+  </main>
+</div>
+<script src="js/content.js"></script>
+<script>
+const R="";
+fill("#name",SITE.name);fill("#headline",SITE.headline);fill("#status",SITE.status);
+fill("#social",`<a href="${SITE.github}" target="_blank" rel="noopener">GitHub</a><a href="${SITE.handshake}" target="_blank" rel="noopener">Handshake</a><a href="mailto:${SITE.email}">${SITE.email}</a><a href="${R+SITE.resume}" download>Résumé</a>`);
+$("#resume").href=R+SITE.resume;
+fill("#aboutText",SITE.about.map(p=>`<p>${esc(p)}</p>`).join(""));
+fill("#jobs",SITE.experience.map(j=>`<div class="item"><div class="when">${j.dates}</div><div><h3>${j.role} · ${j.org}</h3><ul>${j.bullets.map(b=>`<li>${esc(b)}</li>`).join("")}</ul><ul class="pills">${j.tech.map(t=>`<li>${t}</li>`).join("")}</ul></div></div>`).join(""));
+fill("#projList",SITE.projects.map(p=>`<div class="item"><div class="when">${p.type}</div><div><h3>${esc(p.name)}</h3><p>${esc(p.summary)}</p><p class="sub">${esc(p.role)}</p><ul class="pills">${p.tech.map(t=>`<li>${esc(t)}</li>`).join("")}</ul>${(p.links.length||p.note)?`<div class="plinks">${p.links.map(l=>`<a href="${l.url}" target="_blank" rel="noopener">${l.label} ↗</a>`).join("")}${p.note?`<span class="pnote">${esc(p.note)}</span>`:""}</div>`:""}</div></div>`).join(""));
+const e=SITE.education;
+fill("#edu",`<div class="item"><div class="when">${e.dates}</div><div><h3>${e.school}</h3><div class="sub">${e.degree} · GPA ${e.gpa}</div><ul>${e.credentials.map(c=>`<li>${c}</li>`).join("")}</ul><ul class="pills">${e.coursework.map(c=>`<li>${c}</li>`).join("")}</ul></div></div>`);
+fill("#skillList",SITE.skills.map(s=>`<div><h3>${s.group}</h3><div>${s.items.join(" · ")}</div></div>`).join("")+`<div><h3>Awards</h3><div>${SITE.awards.map(a=>`${esc(a.title)} <span style="color:var(--muted)">(${esc(a.detail)})</span>`).join("<br>")}</div></div>`);
+fill("#yr",new Date().getFullYear());
+// highlight current section in sidebar
+const links=[...document.querySelectorAll(".toc a")];
+const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){links.forEach(a=>a.classList.toggle("on",a.getAttribute("href")==="#"+en.target.id))}}),{rootMargin:"-40% 0px -55% 0px"});
+document.querySelectorAll("main section").forEach(s=>io.observe(s));
+</script>
+</body>
+</html>
